@@ -1,9 +1,9 @@
 let
-  # Nix standard library
+  # Стандартная библиотека Nix
   pkgs = import <nixpkgs> { };
 in
 rec {
-  # Single file
+  # Один файл
   aFile1 = pkgs.writeTextFile {
     name = "aFile";
     text = "Single file path";
@@ -13,27 +13,27 @@ rec {
     echo "Single file path" > $out
   '';
 
-  # A folder
+  # Папка
   aFolder = pkgs.runCommand "aFolder" { } ''
     mkdir -p $out
     echo "Hello, world!" > $out/someFile
     echo "Hello, world!!!!" > $out/anotherFile
     ln -sf ${aFile2} $out/aFile
-    # NOTE: network accessible not possible, as drvs are sandboxed
+    # ПРИМЕЧАНИЕ: сеть недоступна, так как деривации изолированы
   '';
 
-  # Downloaded off the internet
+  # Скачано из интернета
   downloadedZip = pkgs.fetchzip {
     url = "https://github.com/readmeio/import-samples/raw/master/import-sample-single-version.zip";
     sha256 = "sha256-uqMV+1AyXtJcs3C7NacEjhK+dDKj9QDwxOPS6sgtZlY=";
   };
-  # ^ There is also `pkgs.fetchgit` to download off Git repo.
-  # But you should generally prefer flake inputs (the rev and hash is tracked in `flake.lock`).
+  # ^ Также есть `pkgs.fetchgit` для загрузки из Git-репозитория.
+  # Но лучше использовать flake-inputs (rev и hash отслеживаются в `flake.lock`).
 
-  # Can also just be local paths
+  # Может быть просто локальными путями
   myself = ./.;
 
-  # Run arbitrary transformation from one path to another
+  # Запуск произвольного преобразования из одного пути в другой
   converted = pkgs.stdenv.mkDerivation {
     name = "nix-html";
     buildInputs = [ pkgs.highlight ];
@@ -46,7 +46,7 @@ rec {
 
   rustc = pkgs.rustc;
 
-  # Build a simple Rust program
+  # Сборка простого Rust-программы
   someBinary = pkgs.stdenv.mkDerivation {
     name = "some-binary";
     src = ./rust;

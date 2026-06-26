@@ -23,8 +23,8 @@ rec {
     ${pc}/bin/process-compose -f ${configFile} $*
   '';
 
-  # TODO: dockerImage (Linux only)
+  # TODO: dockerImage (только Linux)
 }
 
-# TODO: Exercise.
-# Reproduce the sqlite-web demo from ../0/process-compose but in this file.
+# TODO: Упражнение.
+# Воспроизведите демо sqlite-web из ../0/process-compose, но в этом файле.

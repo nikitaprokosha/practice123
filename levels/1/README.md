@@ -1,30 +1,30 @@
-# Level 1
+# Уровень 1
 
 ## Nix Store
 
-### Store Paths
+### Store Paths (пути в хранилище)
 
-- Files & folders under `/nix/store` each with unique hash
-- CLI to create these:
+- Файлы и папки в `/nix/store`, каждый с уникальным хешем
+- CLI для их создания:
     ```
     nix store add-file
     nix store add-path
     nix store delete
 
-    # Downloaded off internet
+    # Скачано из интернета
     nix store prefetch-file https://nammayatri.in/
     ```
 
-### Derivation
+### Деривация
 
-- `.drv`: Recipes or functions that knows how to produce a store path, using nothing but other store paths as input.
-- `nix-build` (or `:b` in `nix repl`) will evaluate the derivation to produce the output in the Nix store.
+- `.drv`: Рецепты или функции, которые знают, как создать путь в хранилище, используя только другие пути хранилища в качестве входа.
+- `nix-build` (или `:b` в `nix repl`) вычисляет деривацию для получения результата в Nix store.
 
-## Writing Nix to produce derivations
+## Написание Nix для создания дериваций
 
-### Builtin
+### Builtin (встроенные функции)
 
-Simplest example,
+Простейший пример:
 
 ```sh
 nix-build -E '
@@ -39,7 +39,7 @@ nix-build -E '
 
 ### `mkDerivation`
 
-That's too lowel, though. Let's use nixpkgs (the "standard library" of Nix)
+Это слишком низкоуровнево. Давайте используем nixpkgs («стандартную библиотеку» Nix):
 
 ```nix
 let 
@@ -56,12 +56,12 @@ in
 
 ### `runCommand`
 
-Let's go one step higher:
+Поднимемся на уровень выше:
 
 ### `writeFile`
 
-Even higher.
+Ещё выше.
 
-## process-compose example!
+## Пример process-compose!
 
 pc.nix

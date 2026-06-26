@@ -8,7 +8,7 @@
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       systems = import inputs.systems;
       perSystem = { self', pkgs, lib, ... }: {
-        # To enter this dev shell, run "nix develop"
+        # Чтобы войти в эту среду разработки, выполните "nix develop"
         devShells.default =
           pkgs.mkShell {
             name = "level-0";
@@ -20,12 +20,12 @@
               pkgs.htop
             ];
             shellHook = ''
-              echo "You are in nix dev shell"
-              echo "Run 'htop' to see the processes"
+              echo "Вы в среде разработки nix"
+              echo "Выполните 'htop', чтобы увидеть процессы"
             '';
           };
 
-        # To run this app, run "nix run .#foo"
+        # Чтобы запустить это приложение, выполните "nix run .#foo"
         apps.foo.program = pkgs.writeShellApplication {
           name = "foo";
           runtimeInputs = [ pkgs.cowsay ];

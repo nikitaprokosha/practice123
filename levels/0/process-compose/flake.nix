@@ -1,5 +1,5 @@
 {
-  description = "A demo of sqlite-web";
+  description = "Демонстрация sqlite-web";
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     flake-parts.url = "github:hercules-ci/flake-parts";
@@ -16,7 +16,7 @@
         inputs.process-compose-flake.flakeModule
       ];
       perSystem = { self', pkgs, lib, ... }: {
-        # This adds a `self.packages.default`
+        # Это добавляет `self.packages.default`
         process-compose."default" =
           let
             port = 8213;
@@ -29,29 +29,29 @@
               };
 
               processes = {
-                # Print a pony every 2 seconds, because why not.
+                # Выводим пони каждые 2 секунды, почему бы и нет.
                 ponysay.command = ''
                   while true; do
-                    ${lib.getExe pkgs.ponysay} "Enjoy our sqlite-web demo!"
+                    ${lib.getExe pkgs.ponysay} "Наслаждайтесь нашей демонстрацией sqlite-web!"
                     sleep 2
                   done
                 '';
 
-                # Create .sqlite database from chinook database.
+                # Создаём .sqlite базу данных из базы chinook.
                 sqlite-init.command = ''
-                  echo "$(date): Importing Chinook database (${dataFile}) ..."
+                  echo "$(date): Импорт базы данных Chinook (${dataFile}) ..."
                   ${lib.getExe pkgs.sqlite} "${dataFile}" < ${inputs.chinookDb}/ChinookDatabase/DataSources/Chinook_Sqlite.sql
-                  echo "$(date): Done."
+                  echo "$(date): Готово."
                 '';
 
-                # Run sqlite-web on the local chinook database.
+                # Запускаем sqlite-web на локальной базе chinook.
                 sqlite-web = {
                   command = ''
                     ${pkgs.sqlite-web}/bin/sqlite_web \
                       --password \
                       --port ${builtins.toString port} "${dataFile}"
                   '';
-                  # The 'depends_on' will have this process wait until the above one is completed.
+                  # 'depends_on' заставит этот процесс ждать завершения предыдущего.
                   depends_on."sqlite-init".condition = "process_completed_successfully";
                   readiness_probe.http_get = {
                     host = "localhost";

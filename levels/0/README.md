@@ -1,52 +1,52 @@
-# Level 0
+# Уровень 0
 
-In this level, we will see the various things Nix is capable of. This provides the needed motivation for learning Nix.
+В этом уровне мы рассмотрим различные возможности Nix. Это даст необходимую мотивацию для изучения Nix.
 
-WIP: Outline
-- [x] Nix as a package manager
-- [x] Isolated development environments
-- [x] Process runner 
-- [x] Building docker images
-- [ ] Linux distribution (NixOS)
-- [ ] Dotfile manager (home-manager)
+WIP: План
+- [x] Nix как менеджер пакетов
+- [x] Изолированные среды разработки
+- [x] Запуск процессов 
+- [x] Создание Docker-образов
+- [ ] Linux-дистрибутив (NixOS)
+- [ ] Менеджер конфигов (home-manager)
 
-## Nix as a package manager
+## Nix как менеджер пакетов
 
-At its basic level, Nix is a package manager. It is capable of installing packages from the [Nixpkgs][nixpkgs] repository, which is a collection of packages maintained by the NixOS community.
+На базовом уровне Nix — это менеджер пакетов. Он способен устанавливать пакеты из репозитория [Nixpkgs][nixpkgs] — коллекции пакетов, поддерживаемых сообществом NixOS.
 
-Search for a package,
+Поиск пакета:
 
 ```sh
 # nix search nixpkgs <keyword>
 nix search nixpkgs ripgrep
 ```
 
-Installing a package (to your home directory),
+Установка пакета (в домашний каталог):
 
 ```sh
 nix profile install nixpkgs#ripgrep
 ```
 
-**Warning** The above command will imperatively install the package. It is not recommended to use this command. We will see a better way to install packages in the NixOS and home-manager section.
+**Предупреждение**: Эта команда императивно установит пакет. Не рекомендуется использовать эту команду. Мы рассмотрим лучший способ установки пакетов в разделе о NixOS и home-manager.
 
-## Isolated development environments
+## Изолированные среды разработки
 
-Nix is capable of creating isolated development environments for your project. All of your project dependencies are available from this environment, without polluting your global environment.
+Nix способен создавать изолированные среды разработки для вашего проекта. Все зависимости вашего проекта доступны в этой среде, не загрязняя глобальную среду.
 
-Creating a development environment (aka. `devShell`) is simple in Nix. 
+Создание среды разработки (также известной как `devShell`) в Nix простое.
 
 ![[devshell/README]]
 
 
-## Process runner
+## Запуск процессов
 
-And now for something completely different. Nix can not only build packages, but also build their configuration files. The whole thing can in turn be wrapped in script (another Nix package). We'll package up and run a bunch of processes using [process-compose](https://github.com/F1bonacc1/process-compose).
+А теперь кое-что совершенно другое. Nix может не только собирать пакеты, но и создавать их файлы конфигурации. Всё это может быть обёрнуто в скрипт (ещё один пакет Nix). Мы упакуем и запустим набор процессов с помощью [process-compose](https://github.com/F1bonacc1/process-compose).
 
 ![[process-compose/README]]
 
-## Building docker image
+## Создание Docker-образа
 
-Docker images can be created (via `docker load`) from tarballs, and Nix can build these tarballs just like regular packages.
+Docker-образы могут быть созданы (через `docker load`) из tarball-архивов, и Nix может собирать эти tarball-архивы так же, как и обычные пакеты.
 
 ![[docker-image/README]]
 

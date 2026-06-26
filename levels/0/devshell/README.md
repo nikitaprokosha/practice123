@@ -1,5 +1,5 @@
-# devshell demo
+# Демонстрация devshell
 
-In this directory, run `nix develop` to enter the development shell, wherein the the mentioned programs are available in your PATH. When you exit the devShell (<kbd>Ctrl+C</kbd>), the programs are no longer available.
+В этом каталоге выполните `nix develop`, чтобы войти в среду разработки, где упомянутые программы доступны в вашем PATH. Когда вы выйдете из devShell (<kbd>Ctrl+C</kbd>), программы больше не будут доступны.
 
 ![[devshell/flake.nix]]

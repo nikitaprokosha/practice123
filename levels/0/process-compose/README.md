@@ -1,5 +1,5 @@
-## process-compose demo
+## Демонстрация process-compose
 
-Run `nix run` in this directory, and you will see a nice demo of sqlite-web.
+Выполните `nix run` в этом каталоге, и вы увидите красивую демонстрацию sqlite-web.
 
 ![[process-compose/flake.nix]]

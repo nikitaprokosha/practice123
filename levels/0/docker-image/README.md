@@ -1,5 +1,5 @@
-# docker-image demo
+# Демонстрация Docker-образа
 
-To build the docker image, run `docker load -i $(nix build --print-out-paths)`
+Для создания Docker-образа выполните `docker load -i $(nix build --print-out-paths)`
 
 ![[docker-image/flake.nix]]

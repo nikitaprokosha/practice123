@@ -8,9 +8,9 @@
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       systems = import inputs.systems;
       perSystem = { self', pkgs, lib, ... }: {
-        # Build a simple docker image
-        # To create the image: `docker load -i $(nix build --print-out-paths)`
-        # NOTE: This works only on Linux
+        # Сборка Docker-образа
+        # Для создания образа: `docker load -i $(nix build --print-out-paths)`
+        # ПРИМЕЧАНИЕ: Работает только на Linux
         packages.default =
           pkgs.dockerTools.buildImage {
             name = "nix-demo";
